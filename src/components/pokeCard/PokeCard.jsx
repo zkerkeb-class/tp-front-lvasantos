@@ -77,13 +77,23 @@ const PokeCard = ({ pokemon }) => {
     };
 
     const pokeApiKey =
-        pokemon?.id ||
         pokemon?.name?.english ||
         pokemon?.name ||
-        pokeState?.id ||
         pokeState?.name?.english ||
         pokeState?.name ||
+        pokemon?.id ||
+        pokeState?.id ||
         "";
+
+    const isCustomPokemon = Boolean(pokemon?.isCustom || pokeState?.isCustom);
+
+    useEffect(() => {
+        setActiveTab("stats");
+        setTabData({});
+        setTabError(null);
+        setTabLoading(false);
+        setPokeApiData(null);
+    }, [pokeApiKey]);
 
     const fetchJson = async (url) => {
         const response = await fetch(url);
@@ -116,6 +126,18 @@ const PokeCard = ({ pokemon }) => {
 
     const handleTabChange = async (tab) => {
         setActiveTab(tab);
+        if (isCustomPokemon) {
+            if (tab === "abilities") {
+                setTabData((prev) => ({ ...prev, abilities: [] }));
+            }
+            if (tab === "attacks") {
+                setTabData((prev) => ({ ...prev, attacks: [] }));
+            }
+            if (tab === "evolutions") {
+                setTabData((prev) => ({ ...prev, evolutions: [] }));
+            }
+            return;
+        }
         if (!pokeApiKey || tabData[tab]) {
             return;
         }
@@ -125,21 +147,28 @@ const PokeCard = ({ pokemon }) => {
 
         try {
             if (tab === "evolutions") {
-                const species = await fetchJson(`https://pokeapi.co/api/v2/pokemon-species/${pokeApiKey}`);
-                const evolution = await fetchJson(species.evolution_chain.url);
-                const chain = parseEvolutionChain(evolution.chain);
-                const evolutionDetails = await Promise.all(
-                    chain.map(async (name) => {
-                        const evoData = await fetchJson(`https://pokeapi.co/api/v2/pokemon/${name}`);
-                        return {
-                            name,
-                            image:
-                                evoData?.sprites?.other?.["official-artwork"]?.front_default ||
-                                evoData?.sprites?.front_default ||
-                                "",
-                        };
-                    })
-                );
+                let evolutionDetails = [];
+                try {
+                    const species = await fetchJson(`https://pokeapi.co/api/v2/pokemon-species/${pokeApiKey}`);
+                    const evolution = await fetchJson(species.evolution_chain.url);
+                    const chain = parseEvolutionChain(evolution.chain);
+                    if (chain.length > 1) {
+                        evolutionDetails = await Promise.all(
+                            chain.map(async (name) => {
+                                const evoData = await fetchJson(`https://pokeapi.co/api/v2/pokemon/${name}`);
+                                return {
+                                    name,
+                                    image:
+                                        evoData?.sprites?.other?.["official-artwork"]?.front_default ||
+                                        evoData?.sprites?.front_default ||
+                                        "",
+                                };
+                            })
+                        );
+                    }
+                } catch (error) {
+                    evolutionDetails = [];
+                }
                 setTabData((prev) => ({ ...prev, evolutions: evolutionDetails }));
             } else {
                 const data = await ensurePokeApiData();
@@ -280,7 +309,6 @@ const PokeCard = ({ pokemon }) => {
                 >
                     Evolutions
                 </button>
-                <div className="poke-tab-spacer" />
                 <button
                     className={`poke-tab ${activeTab === "stats" ? "poke-tab-active" : ""}`}
                     onClick={(event) => {
@@ -297,10 +325,10 @@ const PokeCard = ({ pokemon }) => {
                 {tabError && <p className="poke-card-error">{tabError}</p>}
 
                 {!tabLoading && !tabError && activeTab === "stats" && (
-                    <div className="poke-card-stats">
+                    <div className="poke-card-stats squada-one-regular">
                         {(tabData.stats || stats).map((stat) => (
                             <div className="stat-row" key={stat.label}>
-                                <span className="stat-label">{stat.label}</span>
+                                <span className="stat-label squada-one-regular">{stat.label}</span>
                                 <div className="stat-bar">
                                     <span
                                         className={`stat-bar-fill ${stat.color}`}
@@ -308,7 +336,7 @@ const PokeCard = ({ pokemon }) => {
                                     />
                                 </div>
                                 <span className="stat-value">
-                                    {stat.value}/{stat.value}
+                                    {stat.value}
                                 </span>
                             </div>
                         ))}
@@ -336,16 +364,20 @@ const PokeCard = ({ pokemon }) => {
                 )}
 
                 {!tabLoading && !tabError && activeTab === "evolutions" && (
-                    <ul className="poke-card-list">
-                        {(tabData.evolutions || []).map((item) => (
-                            <li className="poke-card-list-item poke-card-evolution" key={item.name}>
-                                {item.image && (
-                                    <img className="poke-card-evolution-image" src={item.image} alt={item.name} />
-                                )}
-                                <span className="poke-card-evolution-name">{item.name}</span>
-                            </li>
-                        ))}
-                    </ul>
+                    (tabData.evolutions || []).length ? (
+                        <ul className="poke-card-list">
+                            {(tabData.evolutions || []).map((item) => (
+                                <li className="poke-card-list-item poke-card-evolution" key={item.name}>
+                                    {item.image && (
+                                        <img className="poke-card-evolution-image" src={item.image} alt={item.name} />
+                                    )}
+                                    <span className="poke-card-evolution-name">{item.name}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="poke-card-loading">No evolutions for this pokemon</p>
+                    )
                 )}
             </section>
         </article>

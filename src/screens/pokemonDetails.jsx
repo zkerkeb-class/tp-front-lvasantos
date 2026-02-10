@@ -34,6 +34,15 @@ const PokemonDetails = () => {
         base: { ...emptyBase },
     });
 
+    const parseErrorResponse = async (response, fallbackMessage) => {
+        try {
+            const data = await response.json();
+            return data?.details || data?.error || fallbackMessage;
+        } catch (err) {
+            return fallbackMessage;
+        }
+    };
+
     useEffect(() => {
         const fetchPokemon = async () => {
             if (!id) {
@@ -166,14 +175,32 @@ const PokemonDetails = () => {
         setActionMessage("");
         setError("");
 
+        const parsedId = Number(newPokemon.id);
+        const trimmedName = newPokemon.nameEnglish.trim();
+        const parsedTypes = parseTypes(newPokemon.type);
+        if (!Number.isFinite(parsedId) || parsedId <= 0) {
+            setError("Please provide a valid numeric ID.");
+            return;
+        }
+        if (!trimmedName) {
+            setError("Please provide the English name.");
+            return;
+        }
+        if (!parsedTypes.length) {
+            setError("Please provide at least one type.");
+            return;
+        }
+
         try {
             const payload = {
-                id: Number(newPokemon.id),
+                id: parsedId,
                 name: {
-                    english: newPokemon.nameEnglish,
+                    english: trimmedName,
+                    french: trimmedName,
                 },
-                type: parseTypes(newPokemon.type),
+                type: parsedTypes,
                 image: newPokemon.image,
+                isCustom: true,
                 base: {
                     ...newPokemon.base,
                 },
@@ -188,7 +215,8 @@ const PokemonDetails = () => {
             });
 
             if (!response.ok) {
-                throw new Error("Failed to add the Pokemon.");
+                const message = await parseErrorResponse(response, "Failed to add the Pokemon.");
+                throw new Error(message);
             }
 
             setActionMessage("Pokemon created successfully.");

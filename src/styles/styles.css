@@ -37,7 +37,10 @@
 
     /* Sizes */
     --size-card-width: 380px;
-    --size-card-min-height: 780px;
+    --size-card-min-width: 280px;
+    --size-card-min-height: 556px;
+    --size-card-aspect: 280 / 556;
+    --size-list-gap: 2rem;
     --size-image-area: 260px;
     --size-image-frame: 240px;
     --size-image: 190px;
@@ -71,6 +74,13 @@
     --color-link-hover-light: #747bff;
     --color-button-bg: #1a1a1a;
     --color-button-bg-light: #f9f9f9;
+
+    /* UI shared surfaces */
+    --ui-border-strong: rgb(255 255 255 / 0.2);
+    --ui-surface-strong: rgba(5, 5, 5, 0.8);
+    --ui-surface-soft: rgba(5, 5, 5, 0.75);
+    --ui-focus-ring: 0 0 0 2px rgb(100 108 255 / 0.3);
+    --ui-empty-shadow: 0 0 18px rgb(var(--type-default-rgb) / 0.25);
 
     /* Default type tint */
     --type-default-rgb: 34 255 42;

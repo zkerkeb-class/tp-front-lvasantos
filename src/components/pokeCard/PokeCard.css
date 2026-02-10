@@ -11,8 +11,11 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);
-    width: min(100%, var(--size-card-width));
+    width: 100%;
+    max-width: var(--size-card-width);
+    min-width: var(--size-card-min-width);
     min-height: var(--size-card-min-height);
+    aspect-ratio: var(--size-card-aspect);
     padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
     color: var(--text-bright);
     background:
@@ -25,6 +28,7 @@
     animation: card-rise 0.6s ease-out;
     cursor: pointer;
 
+
 }
 
 .poke-card::after {
@@ -34,6 +38,12 @@
     border: 1px solid rgb(var(--type-rgb) / 0.35);
     pointer-events: none;
     clip-path: polygon(0 0, 88% 0, 100% 7%, 100% 100%, 12% 100%, 0 92%);
+}
+
+.poke-card:hover {
+    outline: none;
+    border-color: var(--color-link);
+    box-shadow: 0 0 30px rgb(var(--type-rgb) / 0.6), var(--ui-focus-ring);
 }
 
 .poke-title {
@@ -209,7 +219,7 @@
     background: radial-gradient(circle at 50% 40%, rgb(var(--type-rgb) / 0.2), transparent 65%);
     border: 1px solid rgb(var(--type-rgb) / 0.35);
     border-radius: var(--radius-md);
-    animation: image-float 3.8s ease-in-out infinite;
+    /* animation: image-float 3.8s ease-in-out infinite; */
 }
 
 .poke-image {
@@ -235,24 +245,21 @@
 
 .poke-card-tabs {
     display: flex;
-    flex-direction: row;
-    /* display: grid;
-    grid-template-columns: repeat(3, auto) 1fr auto; */
+    flex-wrap: nowrap;
     align-items: center;
-    /* gap: var(--space-sm); */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .poke-card-content {
-    /* min-height: 244px; */
-    max-height: 244px;
     overflow-y: auto;
     /* overflow-x: hidden; */
-    /* overscroll-behavior: contain; */
-    /* padding-right: var(--space-sm); */
-    /* width: 100%; */
+    overscroll-behavior: contain;
+    padding-right: var(--space-sm);
+    width: 100%;
     /* box-sizing: border-box; */
-    /* scrollbar-width: none; */
-    /* -ms-overflow-style: none; */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .poke-card-content::-webkit-scrollbar {
@@ -318,6 +325,13 @@
 }
 
 .poke-tab {
+    position: relative;
+    /* flex: 1 1 1 1; */
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
     border: 1px solid rgb(var(--type-rgb) / 0.65);
     background: var(--tab-dark);
     color: var(--text-bright);
@@ -385,36 +399,31 @@
     border-color: var(--type-color);
 }
 
-.poke-tab-spacer {
-    height: var(--size-tab-spacer);
-    border-bottom: 2px solid rgb(var(--type-rgb) / 0.45);
-}
-
 .poke-card-stats {
     display: grid;
-    gap: var(--space-lg);
-    /* padding: var(--space-sm) var(--space-xs) var(--space-0); */
-    /* width: 100%; */
-    /* box-sizing: border-box; */
+    gap: var(--space-sm);
+    /* font-size: uppercase; */
+    width: 100%;
 }
 
 .stat-row {
     display: grid;
     grid-template-columns: var(--size-stat-label) 1fr var(--size-stat-value);
-    gap: var(--space-sm-2);
+    /* gap: var(--space-sm-2); */
     align-items: center;
+    width: 100%;
 }
 
 .stat-label {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-lg);
     letter-spacing: var(--letter-spacing-md);
     color: var(--text-bright);
     text-transform: uppercase;
 }
 
 .stat-value {
-    text-align: right;
-    font-size: var(--font-size-sm);
+    text-align: center;
+    font-size: var(--font-size-xl);
     color: var(--text-dim);
 }
 
@@ -457,7 +466,7 @@
     background: linear-gradient(90deg, var(--color-stat-speed-start), var(--color-stat-speed-end));
 }
 
-/* @keyframes image-float {
+@keyframes image-float {
 
     0%,
     100% {
@@ -466,8 +475,8 @@
 
     50% {
         transform: translateY(-6px);
-    } 
-}*/
+    }
+}
 
 @keyframes card-rise {
     from {

@@ -10,6 +10,7 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<App />} />
+            <Route path="/pokemonDetails" element={<PokemonDetails />} />
             <Route path="/pokemonDetails/:id" element={<PokemonDetails />} />
         </Routes>
     </BrowserRouter>

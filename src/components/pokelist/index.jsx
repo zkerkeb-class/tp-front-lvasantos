@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import PokeCard from "../PokeCard/PokeCard";
 
 import './index.css';
 
 const PokeList = () => {
+    const navigate = useNavigate();
     const [pokemons, setPokemons] = useState([]);
     const [loading, setLoading] = useState(true);
     const [query, setQuery] = useState("");
@@ -76,6 +78,13 @@ const PokeList = () => {
                     placeholder="Search by ID or name"
                     aria-label="Search by ID or name"
                 />
+                <button
+                    className="poke-list-create-button"
+                    type="button"
+                    onClick={() => navigate("/pokemonDetails")}
+                >
+                    Create Pokemon
+                </button>
             </div>
             {filteredPokemons.length === 0 ? (
                 <div className="poke-list-empty">
@@ -90,7 +99,10 @@ const PokeList = () => {
                 <>
                     <ul className="poke-list">
                         {paginatedPokemons.map((pokemon, index) => (
-                            <PokeCard key={index} pokemon={pokemon} />
+                            <PokeCard
+                                key={pokemon?.id ?? pokemon?.name?.english ?? pokemon?.name ?? index}
+                                pokemon={pokemon}
+                            />
                         ))}
                     </ul>
                     <div className="poke-list-pagination">
