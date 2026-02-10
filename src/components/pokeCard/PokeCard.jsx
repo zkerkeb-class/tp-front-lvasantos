@@ -293,7 +293,7 @@ const PokeCard = ({ pokemon }) => {
             </nav>
 
             <section className="poke-card-content">
-                {tabLoading && <p className="poke-card-loading">Carregando...</p>}
+                {tabLoading && <p className="poke-card-loading">Loading...</p>}
                 {tabError && <p className="poke-card-error">{tabError}</p>}
 
                 {!tabLoading && !tabError && activeTab === "stats" && (

@@ -61,48 +61,61 @@ const PokeList = () => {
     const paginatedPokemons = filteredPokemons.slice(startIndex, startIndex + perPage);
 
     if (loading) {
-        return <p>Chargement...</p>
+        return <p>Loading...</p>
     }
 
     return (
         <div className="poke-list-container">
-            <h2>Liste des Pokémon</h2>
+            <h2>Pokemon List</h2>
             <div className="poke-list-search">
                 <input
                     className="poke-list-search-input"
                     type="search"
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
-                    placeholder="Buscar por ID ou nome"
-                    aria-label="Buscar por ID ou nome"
+                    placeholder="Search by ID or name"
+                    aria-label="Search by ID or name"
                 />
             </div>
-            <ul className="poke-list">
-                {paginatedPokemons.map((pokemon, index) => (
-                    <PokeCard key={index} pokemon={pokemon} />
-                ))}
-            </ul>
-            <div className="poke-list-pagination">
-                <button
-                    className="poke-list-page-button"
-                    type="button"
-                    onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-                    disabled={currentPage === 1}
-                >
-                    Previous
-                </button>
-                <span className="poke-list-page-info">
-                    Page {currentPage} / {totalPages}
-                </span>
-                <button
-                    className="poke-list-page-button"
-                    type="button"
-                    onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
-                    disabled={currentPage === totalPages}
-                >
-                    Next
-                </button>
-            </div>
+            {filteredPokemons.length === 0 ? (
+                <div className="poke-list-empty">
+                    <img
+                        className="poke-list-empty-image"
+                        src="http://localhost:3000/assets/pokemons/missing-pokemon.png"
+                        alt="Missing Pokemon"
+                    />
+                    <p className="poke-list-empty-text">No Pokemon found</p>
+                </div>
+            ) : (
+                <>
+                    <ul className="poke-list">
+                        {paginatedPokemons.map((pokemon, index) => (
+                            <PokeCard key={index} pokemon={pokemon} />
+                        ))}
+                    </ul>
+                    <div className="poke-list-pagination">
+                        <button
+                            className="poke-list-page-button"
+                            type="button"
+                            onClick={() => setPage((prev) => Math.max(1, prev - 1))}
+                            disabled={currentPage === 1}
+                        >
+                            Previous
+                        </button>
+                        <span className="poke-list-page-info">
+                            Page {currentPage} / {totalPages}
+                        </span>
+                        <button
+                            className="poke-list-page-button"
+                            type="button"
+                            onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
+                            disabled={currentPage === totalPages}
+                        >
+                            Next
+                        </button>
+                    </div>
+                </>
+            )}
         </div>
     );
 };

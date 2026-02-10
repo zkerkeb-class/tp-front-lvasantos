@@ -44,7 +44,7 @@ const PokemonDetails = () => {
             try {
                 const response = await fetch(`http://localhost:3000/pokemons/${id}`);
                 if (!response.ok) {
-                    throw new Error("Pokemon nao encontrado.");
+                    throw new Error("Pokemon not found.");
                 }
                 const data = await response.json();
                 setPokemon(data);
@@ -63,7 +63,7 @@ const PokemonDetails = () => {
                 });
                 setError("");
             } catch (err) {
-                setError(err.message || "Erro ao carregar o Pokemon.");
+                setError(err.message || "Failed to load the Pokemon.");
             } finally {
                 setLoading(false);
             }
@@ -121,14 +121,14 @@ const PokemonDetails = () => {
             });
 
             if (!response.ok) {
-                throw new Error("Erro ao atualizar Pokemon.");
+                throw new Error("Failed to update the Pokemon.");
             }
 
             const data = await response.json();
             setPokemon(data);
-            setActionMessage("Pokemon atualizado com sucesso.");
+            setActionMessage("Pokemon updated successfully.");
         } catch (err) {
-            setError(err.message || "Erro ao atualizar Pokemon.");
+            setError(err.message || "Failed to update the Pokemon.");
         }
     };
 
@@ -137,7 +137,7 @@ const PokemonDetails = () => {
             return;
         }
 
-        const confirmed = window.confirm("Tem certeza que deseja remover este Pokemon?");
+        const confirmed = window.confirm("Are you sure you want to delete this Pokemon?");
         if (!confirmed) {
             return;
         }
@@ -151,13 +151,13 @@ const PokemonDetails = () => {
             });
 
             if (!response.ok) {
-                throw new Error("Erro ao remover Pokemon.");
+                throw new Error("Failed to delete the Pokemon.");
             }
 
-            setActionMessage("Pokemon removido com sucesso.");
+            setActionMessage("Pokemon deleted successfully.");
             navigate("/");
         } catch (err) {
-            setError(err.message || "Erro ao remover Pokemon.");
+            setError(err.message || "Failed to delete the Pokemon.");
         }
     };
 
@@ -188,10 +188,10 @@ const PokemonDetails = () => {
             });
 
             if (!response.ok) {
-                throw new Error("Erro ao adicionar Pokemon.");
+                throw new Error("Failed to add the Pokemon.");
             }
 
-            setActionMessage("Pokemon criado com sucesso.");
+            setActionMessage("Pokemon created successfully.");
             setNewPokemon({
                 id: "",
                 nameEnglish: "",
@@ -200,12 +200,12 @@ const PokemonDetails = () => {
                 base: { ...emptyBase },
             });
         } catch (err) {
-            setError(err.message || "Erro ao adicionar Pokemon.");
+            setError(err.message || "Failed to add the Pokemon.");
         }
     };
 
     if (loading) {
-        return <p className="details-status">Carregando detalhes do Pokemon...</p>;
+        return <p className="details-status">Loading Pokemon details...</p>;
     }
 
     if (error) {
@@ -214,7 +214,7 @@ const PokemonDetails = () => {
                 <div className="details-card">
                     <p className="details-status details-error">{error}</p>
                     <Link className="details-link" to="/">
-                        Voltar para a lista
+                        Back to list
                     </Link>
                 </div>
             </div>
@@ -226,8 +226,8 @@ const PokemonDetails = () => {
             <div className="details-card">
                 <header className="details-header">
                     <div>
-                        <h1 className="details-title">Detalhes do Pokemon</h1>
-                        <p className="details-subtitle">Edite ou gerencie os dados do Pokemon</p>
+                        <h1 className="details-title">Pokemon Details</h1>
+                        <p className="details-subtitle">Edit or manage Pokemon data</p>
                     </div>
                     {pokemon?.image && (
                         <img className="details-preview" src={pokemon.image} alt={pokemon?.name?.english || ""} />
@@ -235,10 +235,10 @@ const PokemonDetails = () => {
                 </header>
                 {pokemon && (
                     <section className="details-section">
-                        <h2 className="details-section-title">Editar {pokemon?.name?.english || pokemon?.name}</h2>
+                        <h2 className="details-section-title">Edit {pokemon?.name?.english || pokemon?.name}</h2>
                         <form className="details-form" onSubmit={handleUpdate}>
                             <label className="details-field">
-                                <span className="details-label">Nome (English)</span>
+                                <span className="details-label">Name (English)</span>
                                 <input
                                     className="details-input"
                                     type="text"
@@ -249,7 +249,7 @@ const PokemonDetails = () => {
                                 />
                             </label>
                             <label className="details-field">
-                                <span className="details-label">Imagem (URL)</span>
+                                <span className="details-label">Image (URL)</span>
                                 <input
                                     className="details-input"
                                     type="text"
@@ -260,7 +260,7 @@ const PokemonDetails = () => {
                                 />
                             </label>
                             <label className="details-field">
-                                <span className="details-label">Tipos (separe por virgula)</span>
+                                <span className="details-label">Types (comma separated)</span>
                                 <input
                                     className="details-input"
                                     type="text"
@@ -330,10 +330,10 @@ const PokemonDetails = () => {
                             </div>
                             <div className="details-actions">
                                 <button className="details-button" type="submit">
-                                    Salvar alteracoes
+                                    Save changes
                                 </button>
                                 <button className="details-button details-button-danger" type="button" onClick={handleDelete}>
-                                    Remover Pokemon
+                                    Delete Pokemon
                                 </button>
                             </div>
                         </form>
@@ -341,7 +341,7 @@ const PokemonDetails = () => {
                 )}
 
                 <section className="details-section">
-                    <h2 className="details-section-title">Adicionar novo Pokemon</h2>
+                    <h2 className="details-section-title">Add new Pokemon</h2>
                     <form className="details-form" onSubmit={handleCreate}>
                         <label className="details-field">
                             <span className="details-label">ID</span>
@@ -355,7 +355,7 @@ const PokemonDetails = () => {
                             />
                         </label>
                         <label className="details-field">
-                            <span className="details-label">Nome (English)</span>
+                            <span className="details-label">Name (English)</span>
                             <input
                                 className="details-input"
                                 type="text"
@@ -366,7 +366,7 @@ const PokemonDetails = () => {
                             />
                         </label>
                         <label className="details-field">
-                            <span className="details-label">Imagem (URL)</span>
+                            <span className="details-label">Image (URL)</span>
                             <input
                                 className="details-input"
                                 type="text"
@@ -377,7 +377,7 @@ const PokemonDetails = () => {
                             />
                         </label>
                         <label className="details-field">
-                            <span className="details-label">Tipos (separe por virgula)</span>
+                            <span className="details-label">Types (comma separated)</span>
                             <input
                                 className="details-input"
                                 type="text"
@@ -449,7 +449,7 @@ const PokemonDetails = () => {
                         </div>
                         <div className="details-actions">
                             <button className="details-button" type="submit">
-                                Adicionar Pokemon
+                                Add Pokemon
                             </button>
                         </div>
                     </form>
@@ -457,7 +457,7 @@ const PokemonDetails = () => {
 
                 {actionMessage && <p className="details-message">{actionMessage}</p>}
                 <Link className="details-link" to="/">
-                    Voltar para a lista
+                    Back to list
                 </Link>
             </div>
         </div>
