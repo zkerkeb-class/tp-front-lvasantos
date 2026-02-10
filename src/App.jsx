@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './App.css'
 import Pokelist from './components/pokelist'
-import { Link, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 
 function App() {
   const navigate = useNavigate();
@@ -11,8 +11,8 @@ function App() {
     console.log("App component mounted");
 
     // setTimeout(() =>
-      // redirectToDetails()
-      // , 5000);
+    // redirectToDetails()
+    // , 5000);
 
   }, []);
 
@@ -23,7 +23,6 @@ function App() {
   return (
     <div>
 
-      <Link to="/pokemonDetails">Voir les détails du Pokémon</Link>
       <Pokelist></Pokelist>
     </div>
   )
