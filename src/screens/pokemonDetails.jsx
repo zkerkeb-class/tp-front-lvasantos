@@ -368,120 +368,124 @@ const PokemonDetails = () => {
                     </section>
                 )}
 
-                <section className="details-section">
-                    <h2 className="details-section-title">Add new Pokemon</h2>
-                    <form className="details-form" onSubmit={handleCreate}>
-                        <label className="details-field">
-                            <span className="details-label">ID</span>
-                            <input
-                                className="details-input"
-                                type="number"
-                                value={newPokemon.id}
-                                onChange={(event) =>
-                                    setNewPokemon((prev) => ({ ...prev, id: event.target.value }))
-                                }
-                            />
-                        </label>
-                        <label className="details-field">
-                            <span className="details-label">Name (English)</span>
-                            <input
-                                className="details-input"
-                                type="text"
-                                value={newPokemon.nameEnglish}
-                                onChange={(event) =>
-                                    setNewPokemon((prev) => ({ ...prev, nameEnglish: event.target.value }))
-                                }
-                            />
-                        </label>
-                        <label className="details-field">
-                            <span className="details-label">Image (URL)</span>
-                            <input
-                                className="details-input"
-                                type="text"
-                                value={newPokemon.image}
-                                onChange={(event) =>
-                                    setNewPokemon((prev) => ({ ...prev, image: event.target.value }))
-                                }
-                            />
-                        </label>
-                        <label className="details-field">
-                            <span className="details-label">Types (comma separated)</span>
-                            <input
-                                className="details-input"
-                                type="text"
-                                value={newPokemon.type}
-                                onChange={(event) =>
-                                    setNewPokemon((prev) => ({ ...prev, type: event.target.value }))
-                                }
-                            />
-                        </label>
-                        <div className="details-grid">
+                {!id && (
+                    <section className="details-section">
+                        <h2 className="details-section-title">Add new Pokemon</h2>
+                        <form className="details-form" onSubmit={handleCreate}>
                             <label className="details-field">
-                                <span className="details-label">HP</span>
+                                <span className="details-label">ID</span>
                                 <input
                                     className="details-input"
                                     type="number"
-                                    value={newPokemon.base.HP}
-                                    onChange={(event) => handleBaseChange(setNewPokemon, "HP", event.target.value)}
-                                />
-                            </label>
-                            <label className="details-field">
-                                <span className="details-label">ATK</span>
-                                <input
-                                    className="details-input"
-                                    type="number"
-                                    value={newPokemon.base.Attack}
-                                    onChange={(event) => handleBaseChange(setNewPokemon, "Attack", event.target.value)}
-                                />
-                            </label>
-                            <label className="details-field">
-                                <span className="details-label">DEF</span>
-                                <input
-                                    className="details-input"
-                                    type="number"
-                                    value={newPokemon.base.Defense}
-                                    onChange={(event) => handleBaseChange(setNewPokemon, "Defense", event.target.value)}
-                                />
-                            </label>
-                            <label className="details-field">
-                                <span className="details-label">SPA</span>
-                                <input
-                                    className="details-input"
-                                    type="number"
-                                    value={newPokemon.base.SpecialAttack}
+                                    value={newPokemon.id}
                                     onChange={(event) =>
-                                        handleBaseChange(setNewPokemon, "SpecialAttack", event.target.value)
+                                        setNewPokemon((prev) => ({ ...prev, id: event.target.value }))
                                     }
                                 />
                             </label>
                             <label className="details-field">
-                                <span className="details-label">SPD</span>
+                                <span className="details-label">Name (English)</span>
                                 <input
                                     className="details-input"
-                                    type="number"
-                                    value={newPokemon.base.SpecialDefense}
+                                    type="text"
+                                    value={newPokemon.nameEnglish}
                                     onChange={(event) =>
-                                        handleBaseChange(setNewPokemon, "SpecialDefense", event.target.value)
+                                        setNewPokemon((prev) => ({ ...prev, nameEnglish: event.target.value }))
                                     }
                                 />
                             </label>
                             <label className="details-field">
-                                <span className="details-label">SPE</span>
+                                <span className="details-label">Image (URL)</span>
                                 <input
                                     className="details-input"
-                                    type="number"
-                                    value={newPokemon.base.Speed}
-                                    onChange={(event) => handleBaseChange(setNewPokemon, "Speed", event.target.value)}
+                                    type="text"
+                                    value={newPokemon.image}
+                                    onChange={(event) =>
+                                        setNewPokemon((prev) => ({ ...prev, image: event.target.value }))
+                                    }
                                 />
                             </label>
-                        </div>
-                        <div className="details-actions">
-                            <button className="details-button" type="submit">
-                                Add Pokemon
-                            </button>
-                        </div>
-                    </form>
-                </section>
+                            <label className="details-field">
+                                <span className="details-label">Types (comma separated)</span>
+                                <input
+                                    className="details-input"
+                                    type="text"
+                                    value={newPokemon.type}
+                                    onChange={(event) =>
+                                        setNewPokemon((prev) => ({ ...prev, type: event.target.value }))
+                                    }
+                                />
+                            </label>
+                            <div className="details-grid">
+                                <label className="details-field">
+                                    <span className="details-label">HP</span>
+                                    <input
+                                        className="details-input"
+                                        type="number"
+                                        value={newPokemon.base.HP}
+                                        onChange={(event) => handleBaseChange(setNewPokemon, "HP", event.target.value)}
+                                    />
+                                </label>
+                                <label className="details-field">
+                                    <span className="details-label">ATK</span>
+                                    <input
+                                        className="details-input"
+                                        type="number"
+                                        value={newPokemon.base.Attack}
+                                        onChange={(event) => handleBaseChange(setNewPokemon, "Attack", event.target.value)}
+                                    />
+                                </label>
+                                <label className="details-field">
+                                    <span className="details-label">DEF</span>
+                                    <input
+                                        className="details-input"
+                                        type="number"
+                                        value={newPokemon.base.Defense}
+                                        onChange={(event) => handleBaseChange(setNewPokemon, "Defense", event.target.value)}
+                                    />
+                                </label>
+                                <label className="details-field">
+                                    <span className="details-label">SPA</span>
+                                    <input
+                                        className="details-input"
+                                        type="number"
+                                        value={newPokemon.base.SpecialAttack}
+                                        onChange={(event) =>
+                                            handleBaseChange(setNewPokemon, "SpecialAttack", event.target.value)
+                                        }
+                                    />
+                                </label>
+                                <label className="details-field">
+                                    <span className="details-label">SPD</span>
+                                    <input
+                                        className="details-input"
+                                        type="number"
+                                        value={newPokemon.base.SpecialDefense}
+                                        onChange={(event) =>
+                                            handleBaseChange(setNewPokemon, "SpecialDefense", event.target.value)
+                                        }
+                                    />
+                                </label>
+                                <label className="details-field">
+                                    <span className="details-label">SPE</span>
+                                    <input
+                                        className="details-input"
+                                        type="number"
+                                        value={newPokemon.base.Speed}
+                                        onChange={(event) => handleBaseChange(setNewPokemon, "Speed", event.target.value)}
+                                    />
+                                </label>
+                            </div>
+                            <div className="details-actions">
+                                <button className="details-button" type="submit">
+                                    Add Pokemon
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+                )}
+
+
 
                 {actionMessage && <p className="details-message">{actionMessage}</p>}
                 <Link className="details-link" to="/">
