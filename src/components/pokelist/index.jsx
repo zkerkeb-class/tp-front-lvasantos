@@ -1,7 +1,7 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PokeCard from "../PokeCard/PokeCard";
-
 import './index.css';
 
 const PokeList = () => {
@@ -19,15 +19,10 @@ const PokeList = () => {
         fetch("http://localhost:3000/pokemons")
             .then((response) => response.json())
             .then((data) => {
-                console.log("Données reçues:", data);
                 setPokemons(data);
-                console.log("Pokémons extraits:", data);
                 setLoading(false);
             })
-            .catch((error) => {
-                console.error("Erreur:", error);
-                setLoading(false);
-            });
+            .catch(() => setLoading(false));
     }, []);
 
     const normalizedQuery = query.trim().toLowerCase();
@@ -36,17 +31,14 @@ const PokeList = () => {
         setPage(1);
     }, [normalizedQuery, typeFilter, sortKey, sortOrder]);
 
-    // Neon background: sincroniza classe do body com filtro ativo
     useEffect(() => {
         const body = document.body;
-        // Remove classes filter-*
         body.classList.forEach((cls) => {
             if (cls.startsWith('filter-')) body.classList.remove(cls);
         });
         if (typeFilter && typeFilter !== 'all') {
             body.classList.add(`filter-${typeFilter}`);
         }
-        // Limpeza ao desmontar
         return () => {
             body.classList.forEach((cls) => {
                 if (cls.startsWith('filter-')) body.classList.remove(cls);
@@ -56,70 +48,41 @@ const PokeList = () => {
 
     const typeOptions = Array.from(
         new Set(
-            pokemons
-                .flatMap((pokemon) => pokemon?.type || [])
-                .map((type) => String(type).toLowerCase())
+            pokemons.flatMap((pokemon) => pokemon?.type || []).map((type) => String(type).toLowerCase())
         )
     ).sort();
 
     const filteredPokemons = pokemons.filter((pokemon) => {
         if (typeFilter !== "all") {
             const pokemonTypes = (pokemon?.type || []).map((type) => String(type).toLowerCase());
-            if (!pokemonTypes.includes(typeFilter)) {
-                return false;
-            }
+            if (!pokemonTypes.includes(typeFilter)) return false;
         }
-
-        if (!normalizedQuery) {
-            return true;
-        }
-
-        const idMatch = String(pokemon.id).startsWith(normalizedQuery);
-        if (/^\d+$/.test(normalizedQuery)) {
-            return idMatch;
-        }
-
+        if (!normalizedQuery) return true;
+        if (/^\d+$/.test(normalizedQuery)) return String(pokemon.id).startsWith(normalizedQuery);
         const names = [
             pokemon?.name?.english,
             pokemon?.name?.french,
             pokemon?.name?.japanese,
             pokemon?.name?.chinese,
             pokemon?.name,
-        ]
-            .filter(Boolean)
-            .map((name) => String(name).toLowerCase());
-
+        ].filter(Boolean).map((name) => String(name).toLowerCase());
         return names.some((name) => name.includes(normalizedQuery));
     });
 
-    const sortedPokemons = [...filteredPokemons].sort((left, right) => {
-        const direction = sortOrder === "desc" ? -1 : 1;
-        if (sortKey === "id") {
-            return direction * ((left?.id ?? 0) - (right?.id ?? 0));
-        }
+    const sortedPokemons = [...filteredPokemons].sort((a, b) => {
+        const dir = sortOrder === "desc" ? -1 : 1;
+        if (sortKey === "id") return dir * ((a?.id ?? 0) - (b?.id ?? 0));
         if (sortKey === "name") {
-            const leftName = left?.name?.english || left?.name || "";
-            const rightName = right?.name?.english || right?.name || "";
-            return direction * leftName.localeCompare(rightName);
+            const aName = a?.name?.english || a?.name || "";
+            const bName = b?.name?.english || b?.name || "";
+            return dir * aName.localeCompare(bName);
         }
-        if (sortKey === "hp") {
-            return direction * ((left?.base?.HP ?? 0) - (right?.base?.HP ?? 0));
-        }
-        if (sortKey === "attack") {
-            return direction * ((left?.base?.Attack ?? 0) - (right?.base?.Attack ?? 0));
-        }
-        if (sortKey === "defense") {
-            return direction * ((left?.base?.Defense ?? 0) - (right?.base?.Defense ?? 0));
-        }
-        if (sortKey === "special-attack") {
-            return direction * ((left?.base?.SpecialAttack ?? 0) - (right?.base?.SpecialAttack ?? 0));
-        }
-        if (sortKey === "special-defense") {
-            return direction * ((left?.base?.SpecialDefense ?? 0) - (right?.base?.SpecialDefense ?? 0));
-        }
-        if (sortKey === "speed") {
-            return direction * ((left?.base?.Speed ?? 0) - (right?.base?.Speed ?? 0));
-        }
+        if (sortKey === "hp") return dir * ((a?.base?.HP ?? 0) - (b?.base?.HP ?? 0));
+        if (sortKey === "attack") return dir * ((a?.base?.Attack ?? 0) - (b?.base?.Attack ?? 0));
+        if (sortKey === "defense") return dir * ((a?.base?.Defense ?? 0) - (b?.base?.Defense ?? 0));
+        if (sortKey === "special-attack") return dir * ((a?.base?.SpecialAttack ?? 0) - (b?.base?.SpecialAttack ?? 0));
+        if (sortKey === "special-defense") return dir * ((a?.base?.SpecialDefense ?? 0) - (b?.base?.SpecialDefense ?? 0));
+        if (sortKey === "speed") return dir * ((a?.base?.Speed ?? 0) - (b?.base?.Speed ?? 0));
         return 0;
     });
 
@@ -128,20 +91,19 @@ const PokeList = () => {
     const startIndex = (currentPage - 1) * perPage;
     const paginatedPokemons = sortedPokemons.slice(startIndex, startIndex + perPage);
 
-    if (loading) {
-        return <p>Loading...</p>
-    }
+    if (loading) return <p>Loading...</p>;
 
     return (
         <div className="poke-list-container">
-            <div className="poke-list-toolbar">
-                <h2>Pokemon List</h2>
+            <div className="poke-list-header">
+                <h2 className="poke-list-title">Pokemon Details</h2>
+                <p className="poke-list-subtitle">Explore and manage your Pokemon collection</p>
                 <button
                     className="poke-list-create-button"
                     type="button"
                     onClick={() => navigate("/pokemonDetails")}
                 >
-                    Create Pokemon
+                    + Create Pokemon
                 </button>
             </div>
             <div className="poke-list-controls">

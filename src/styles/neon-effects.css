@@ -69,7 +69,6 @@ body.filter-steel {
     background: radial-gradient(circle at 50% 50%, #b8b8d0 0%, #181a23 100%);
 }
 
-/* --- Grid Layout --- */
 .poke-grid {
     display: grid;
     gap: 2rem;

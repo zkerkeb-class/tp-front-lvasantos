@@ -75,7 +75,7 @@
     --color-button-bg: #1a1a1a;
     --color-button-bg-light: #f9f9f9;
 
-    /* UI shared surfaces */
+    /* UI surfaces */
     --ui-border-strong: rgb(255 255 255 / 0.2);
     --ui-surface-strong: rgba(5, 5, 5, 0.8);
     --ui-surface-soft: rgba(5, 5, 5, 0.75);
