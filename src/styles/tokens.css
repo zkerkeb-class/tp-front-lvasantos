@@ -81,6 +81,12 @@
     --ui-surface-soft: rgba(5, 5, 5, 0.75);
     --ui-focus-ring: 0 0 0 2px rgb(100 108 255 / 0.3);
     --ui-empty-shadow: 0 0 18px rgb(var(--type-default-rgb) / 0.25);
+    --ui-type-border: 2px solid rgb(var(--type-default-rgb) / 0.5);
+    --ui-type-border-strong: 2px solid rgb(var(--type-default-rgb) / 0.7);
+    --ui-type-border-soft: 1px solid rgb(var(--type-default-rgb) / 0.4);
+    --ui-type-glow: 0 0 18px rgb(var(--type-default-rgb) / 0.35);
+    --ui-type-glow-soft: 0 0 18px rgb(var(--type-default-rgb) / 0.25);
+    --ui-type-bg-soft: rgb(var(--type-default-rgb) / 0.1);
 
     /* Default type tint */
     --type-default-rgb: 34 255 42;

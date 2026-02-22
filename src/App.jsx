@@ -16,13 +16,8 @@ function App() {
 
   }, []);
 
-  const redirectToDetails = () => {
-    navigate('/pokemonDetails');
-  }
-
   return (
     <div>
-
       <Pokelist></Pokelist>
     </div>
   )

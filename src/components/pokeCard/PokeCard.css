@@ -11,7 +11,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);
-    width: 100%;
     max-width: var(--size-card-width);
     min-width: var(--size-card-min-width);
     min-height: var(--size-card-min-height);
@@ -57,7 +56,6 @@
 .poke-card-header {
     display: inline-flex;
     align-items: center;
-    /* padding: var(--space-xs) var(--space-xs) var(--space-2xs); */
     width: fit-content;
     background: var(--type-color);
     clip-path: polygon(0 0, 89% 0, 101% 100%, 0 101%);
@@ -219,7 +217,6 @@
     background: radial-gradient(circle at 50% 40%, rgb(var(--type-rgb) / 0.2), transparent 65%);
     border: 1px solid rgb(var(--type-rgb) / 0.35);
     border-radius: var(--radius-md);
-    /* animation: image-float 3.8s ease-in-out infinite; */
 }
 
 .poke-image {
@@ -253,11 +250,9 @@
 
 .poke-card-content {
     overflow-y: auto;
-    /* overflow-x: hidden; */
     overscroll-behavior: contain;
     padding-right: var(--space-sm);
     width: 100%;
-    /* box-sizing: border-box; */
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -326,12 +321,10 @@
 
 .poke-tab {
     position: relative;
-    /* flex: 1 1 1 1; */
     min-width: 0;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
-    /* text-overflow: ellipsis; */
     border: 1px solid rgb(var(--type-rgb) / 0.65);
     background: var(--tab-dark);
     color: var(--text-bright);
@@ -354,45 +347,6 @@
 }
 
 
-/* 
-.poke-card {
-    --type-rgb: var(--type-default-rgb);
-    --type-color: rgb(var(--type-rgb));
-    --card-bg: var(--color-black);
-    --panel-bg: var(--color-black-soft);
-    --tab-dark: var(--color-black-tab);
-    --text-bright: var(--color-text-bright);
-    --text-dim: var(--color-text-dim);
-
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-    width: min(100%, var(--size-card-width));
-    min-height: var(--size-card-min-height);
-    padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
-    color: var(--text-bright);
-    background:
-        radial-gradient(circle at 25% 20%, rgb(var(--type-rgb) / 0.15), transparent 40%),
-        radial-gradient(circle at 80% 5%, rgb(var(--type-rgb) / 0.12), transparent 35%),
-        linear-gradient(180deg, var(--color-black) 0%, var(--color-black-mid) 45%, var(--color-black) 100%);
-    border: 2px solid var(--type-color);
-    box-shadow: 0 0 18px rgb(var(--type-rgb) / 0.35);
-    clip-path: polygon(0 0, 88% 0, 100% 7%, 100% 100%, 12% 100%, 0 92%);
-    animation: card-rise 0.6s ease-out;
-
-}
-
-.poke-card::after {
-    content: "";
-    position: absolute;
-    inset: var(--space-md);
-    border: 1px solid rgb(var(--type-rgb) / 0.35);
-    pointer-events: none;
-    clip-path: polygon(0 0, 88% 0, 100% 7%, 100% 100%, 12% 100%, 0 92%);
-} */
-
-
 .poke-tab-active {
     background: var(--type-color);
     color: var(--color-tab-text);
@@ -402,14 +356,12 @@
 .poke-card-stats {
     display: grid;
     gap: var(--space-sm);
-    /* font-size: uppercase; */
     width: 100%;
 }
 
 .stat-row {
     display: grid;
     grid-template-columns: var(--size-stat-label) 1fr var(--size-stat-value);
-    /* gap: var(--space-sm-2); */
     align-items: center;
     width: 100%;
 }
@@ -489,127 +441,3 @@
         transform: translateY(0);
     }
 }
-
-
-/* .poke-card {
-    background-color: red;
-    background-color: #7B4B94;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    min-height: 250px;
-    cursor: pointer;
-
-} */
-
-/* .poke-title {
-    color: white;
-    text-transform: capitalize;
-    font-size: 12px;
-} */
-
-/* .poke-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 8px;
-    padding-right: 40px;
-    width: fit-content;
-    clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 100%, 0 100%);
-    background-color: #6A3B7A;
-} */
-
-
-/* .poke-image {
-    width: 100px;
-    height: 100px;
-} */
-
-/* .poke-image-background {
-    background-color: blanchedalmond;
-    margin: 8px;
-} */
-
-/* .poke-type-font {
-    font-size: 10px;
-} */
-
-/* .poke-stat-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 8px;
-} */
-
-/* Couleurs par type de Pokémon */
-/* .poke-card-header.poke-type-normal {
-    background-color: #A8A878;
-} */
-
-/* .poke-card-header.poke-type-fire {
-    background-color: #F08030;
-} */
-
-/* .poke-card-header.poke-type-water {
-    background-color: #6890F0;
-} */
-
-/* .poke-card-header.poke-type-grass {
-    background-color: #78C850;
-} */
-
-/* .poke-card-header.poke-type-electric {
-    background-color: #F8D030;
-} */
-
-/* .poke-card-header.poke-type-ice {
-    background-color: #98D8D8;
-} */
-
-/* .poke-card-header.poke-type-fighting {
-    background-color: #C03028;
-} */
-
-/* .poke-card-header.poke-type-poison {
-    background-color: #A040A0;
-} */
-
-/* .poke-card-header.poke-type-ground {
-    background-color: #E0C068;
-} */
-
-/* .poke-card-header.poke-type-flying {
-    background-color: #A890F0;
-} */
-
-/* .poke-card-header.poke-type-psychic {
-    background-color: #F85888;
-} */
-
-/* .poke-card-header.poke-type-bug {
-    background-color: #A8B820;
-} */
-
-/* .poke-card-header.poke-type-rock {
-    background-color: #B8A038;
-} */
-
-/* .poke-card-header.poke-type-ghost {
-    background-color: #705898;
-} */
-
-/* .poke-card-header.poke-type-dragon {
-    background-color: #7038F8;
-} */
-
-/* .poke-card-header.poke-type-dark {
-    background-color: #705848;
-} */
-
-/* .poke-card-header.poke-type-steel {
-    background-color: #B8B8D0;
-} */
-
-/* .poke-card-header.poke-type-fairy {
-    background-color: #EE99AC;
-} */

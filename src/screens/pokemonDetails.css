@@ -16,8 +16,8 @@
     background:
         radial-gradient(circle at 20% 10%, rgb(var(--type-default-rgb) / 0.2), transparent 45%),
         linear-gradient(180deg, var(--color-black) 0%, var(--color-black-mid) 45%, var(--color-black) 100%);
-    border: 2px solid rgb(var(--type-default-rgb) / 0.7);
-    box-shadow: 0 0 18px rgb(var(--type-default-rgb) / 0.35);
+    border: var(--ui-type-border-strong);
+    box-shadow: var(--ui-type-glow);
     clip-path: polygon(0 0, 92% 0, 100% 6%, 100% 100%, 8% 100%, 0 94%);
 }
 
@@ -49,8 +49,8 @@
     object-fit: contain;
     image-rendering: pixelated;
     border-radius: var(--radius-md);
-    border: 1px solid rgb(var(--type-default-rgb) / 0.4);
-    background: rgb(var(--type-default-rgb) / 0.1);
+    border: var(--ui-type-border-soft);
+    background: var(--ui-type-bg-soft);
 }
 
 .details-section {
