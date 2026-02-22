@@ -1,0 +1,443 @@
+.poke-card {
+    --type-rgb: var(--type-default-rgb);
+    --type-color: rgb(var(--type-rgb));
+    --card-bg: var(--color-black);
+    --panel-bg: var(--color-black-soft);
+    --tab-dark: var(--color-black-tab);
+    --text-bright: var(--color-text-bright);
+    --text-dim: var(--color-text-dim);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    max-width: var(--size-card-width);
+    min-width: var(--size-card-min-width);
+    min-height: var(--size-card-min-height);
+    aspect-ratio: var(--size-card-aspect);
+    padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
+    color: var(--text-bright);
+    background:
+        radial-gradient(circle at 25% 20%, rgb(var(--type-rgb) / 0.15), transparent 40%),
+        radial-gradient(circle at 80% 5%, rgb(var(--type-rgb) / 0.12), transparent 35%),
+        linear-gradient(180deg, var(--color-black) 0%, var(--color-black-mid) 45%, var(--color-black) 100%);
+    border: 2px solid var(--type-color);
+    box-shadow: 0 0 18px rgb(var(--type-rgb) / 0.35);
+    clip-path: polygon(0 0, 88% 0, 100% 7%, 100% 100%, 12% 100%, 0 92%);
+    animation: card-rise 0.6s ease-out;
+    cursor: pointer;
+
+
+}
+
+.poke-card::after {
+    content: "";
+    position: absolute;
+    inset: var(--space-md);
+    border: 1px solid rgb(var(--type-rgb) / 0.35);
+    pointer-events: none;
+    clip-path: polygon(0 0, 88% 0, 100% 7%, 100% 100%, 12% 100%, 0 92%);
+}
+
+.poke-card:hover {
+    outline: none;
+    border-color: var(--color-link);
+    box-shadow: 0 0 30px rgb(var(--type-rgb) / 0.6), var(--ui-focus-ring);
+}
+
+.poke-title {
+    color: var(--text-bright);
+    font-size: var(--font-size-2xl);
+    letter-spacing: var(--letter-spacing-md);
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgb(var(--type-rgb) / 0.55);
+}
+
+.poke-card-header {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    background: var(--type-color);
+    clip-path: polygon(0 0, 89% 0, 101% 100%, 0 101%);
+}
+
+.poke-card-header-content {
+    background: var(--color-black-strong);
+    padding: var(--space-xs) var(--space-6xl) var(--space-xs) var(--space-base);
+    clip-path: polygon(0 0, 88% 0, 100% 100%, 0 100%);
+}
+
+.poke-card-top {
+    display: grid;
+    gap: var(--space-lg);
+    padding: var(--space-0) var(--space-0) var(--space-0) var(--space-xs);
+}
+
+.poke-card-types {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.poke-type-chip {
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--type-color);
+    background: var(--color-black-soft);
+    font-size: var(--font-size-sm);
+    letter-spacing: var(--letter-spacing-sm);
+    text-transform: uppercase;
+    color: var(--text-bright);
+    box-shadow: inset 0 0 0 1px var(--color-border-soft);
+    text-shadow: 0 1px 2px var(--color-text-shadow);
+}
+
+
+.poke-type-grass {
+    background: linear-gradient(140deg, var(--type-grass-start), var(--type-grass-end));
+    color: var(--type-grass-text);
+    border-color: var(--type-grass-border);
+}
+
+.poke-type-poison {
+    background: linear-gradient(140deg, var(--type-poison-start), var(--type-poison-end));
+    border-color: var(--type-poison-border);
+    color: var(--type-poison-text);
+}
+
+.poke-type-normal {
+    background: linear-gradient(140deg, var(--type-normal-start), var(--type-normal-end));
+    border-color: var(--type-normal-border);
+    color: var(--type-normal-text);
+}
+
+.poke-type-fire {
+    background: linear-gradient(140deg, var(--type-fire-start), var(--type-fire-end));
+    border-color: var(--type-fire-border);
+    color: var(--type-fire-text);
+}
+
+.poke-type-water {
+    background: linear-gradient(140deg, var(--type-water-start), var(--type-water-end));
+    border-color: var(--type-water-border);
+    color: var(--type-water-text);
+}
+
+.poke-type-electric {
+    background: linear-gradient(140deg, var(--type-electric-start), var(--type-electric-end));
+    border-color: var(--type-electric-border);
+    color: var(--type-electric-text);
+}
+
+.poke-type-ice {
+    background: linear-gradient(140deg, var(--type-ice-start), var(--type-ice-end));
+    border-color: var(--type-ice-border);
+    color: var(--type-ice-text);
+}
+
+.poke-type-fighting {
+    background: linear-gradient(140deg, var(--type-fighting-start), var(--type-fighting-end));
+    border-color: var(--type-fighting-border);
+    color: var(--type-fighting-text);
+}
+
+.poke-type-ground {
+    background: linear-gradient(140deg, var(--type-ground-start), var(--type-ground-end));
+    border-color: var(--type-ground-border);
+    color: var(--type-ground-text);
+}
+
+.poke-type-flying {
+    background: linear-gradient(140deg, var(--type-flying-start), var(--type-flying-end));
+    border-color: var(--type-flying-border);
+    color: var(--type-flying-text);
+}
+
+.poke-type-psychic {
+    background: linear-gradient(140deg, var(--type-psychic-start), var(--type-psychic-end));
+    border-color: var(--type-psychic-border);
+    color: var(--type-psychic-text);
+}
+
+.poke-type-bug {
+    background: linear-gradient(140deg, var(--type-bug-start), var(--type-bug-end));
+    border-color: var(--type-bug-border);
+    color: var(--type-bug-text);
+}
+
+.poke-type-rock {
+    background: linear-gradient(140deg, var(--type-rock-start), var(--type-rock-end));
+    border-color: var(--type-rock-border);
+    color: var(--type-rock-text);
+}
+
+.poke-type-ghost {
+    background: linear-gradient(140deg, var(--type-ghost-start), var(--type-ghost-end));
+    border-color: var(--type-ghost-border);
+    color: var(--type-ghost-text);
+}
+
+.poke-type-dragon {
+    background: linear-gradient(140deg, var(--type-dragon-start), var(--type-dragon-end));
+    border-color: var(--type-dragon-border);
+    color: var(--type-dragon-text);
+}
+
+.poke-type-dark {
+    background: linear-gradient(140deg, var(--type-dark-start), var(--type-dark-end));
+    border-color: var(--type-dark-border);
+    color: var(--type-dark-text);
+}
+
+.poke-type-steel {
+    background: linear-gradient(140deg, var(--type-steel-start), var(--type-steel-end));
+    border-color: var(--type-steel-border);
+    color: var(--type-steel-text);
+}
+
+.poke-type-fairy {
+    background: linear-gradient(140deg, var(--type-fairy-start), var(--type-fairy-end));
+    border-color: var(--type-fairy-border);
+    color: var(--type-fairy-text);
+}
+
+.poke-card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--size-image-area);
+}
+
+.poke-card-image-frame {
+    width: var(--size-image-frame);
+    height: var(--size-image-frame);
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle at 50% 40%, rgb(var(--type-rgb) / 0.2), transparent 65%);
+    border: 1px solid rgb(var(--type-rgb) / 0.35);
+    border-radius: var(--radius-md);
+}
+
+.poke-image {
+    max-width: var(--size-image);
+    max-height: var(--size-image);
+    filter: drop-shadow(var(--shadow-image));
+    image-rendering: pixelated;
+}
+
+.poke-card-image {
+    max-width: var(--size-image);
+    max-height: var(--size-image);
+    filter: drop-shadow(var(--shadow-image));
+    image-rendering: pixelated;
+}
+
+.poke-card-image-placeholder {
+    color: var(--text-dim);
+    letter-spacing: var(--letter-spacing-md);
+    text-transform: uppercase;
+    font-size: var(--font-size-xs);
+}
+
+.poke-card-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.poke-card-content {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: var(--space-sm);
+    width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.poke-card-content::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.poke-card-loading,
+.poke-card-error {
+    font-size: var(--font-size-sm);
+    color: var(--text-dim);
+    letter-spacing: var(--letter-spacing-sm);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.poke-card-error {
+    color: var(--type-color);
+}
+
+.poke-card-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-sm);
+    width: 100%;
+}
+
+.poke-card-list-item {
+    font-size: var(--font-size-sm);
+    letter-spacing: var(--letter-spacing-sm);
+    text-transform: uppercase;
+    color: var(--text-bright);
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid rgb(var(--type-rgb) / 0.3);
+    border-radius: var(--radius-sm);
+    background: linear-gradient(140deg, rgb(var(--type-rgb) / 0.15), transparent 70%);
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.poke-card-evolution {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.poke-card-evolution-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    flex-shrink: 0;
+}
+
+.poke-card-evolution-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.poke-tab {
+    position: relative;
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid rgb(var(--type-rgb) / 0.65);
+    background: var(--tab-dark);
+    color: var(--text-bright);
+    padding: var(--space-sm) var(--space-base);
+    font-family: var(--font-family-display);
+    letter-spacing: var(--letter-spacing-sm);
+    text-transform: uppercase;
+    clip-path: polygon(0 0, 90% 0, 100% 90%, 100% 100%, 0% 100%, 0 100%);
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+}
+
+.poke-tab::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 0.5px solid rgb(var(--type-rock-end) / 0.45);
+    pointer-events: none;
+    clip-path: polygon(0 0, 2% 0, 100% 90%, 100% 100%, 0% 100%, 0 100%);
+}
+
+
+.poke-tab-active {
+    background: var(--type-color);
+    color: var(--color-tab-text);
+    border-color: var(--type-color);
+}
+
+.poke-card-stats {
+    display: grid;
+    gap: var(--space-sm);
+    width: 100%;
+}
+
+.stat-row {
+    display: grid;
+    grid-template-columns: var(--size-stat-label) 1fr var(--size-stat-value);
+    align-items: center;
+    width: 100%;
+}
+
+.stat-label {
+    font-size: var(--font-size-lg);
+    letter-spacing: var(--letter-spacing-md);
+    color: var(--text-bright);
+    text-transform: uppercase;
+}
+
+.stat-value {
+    text-align: center;
+    font-size: var(--font-size-xl);
+    color: var(--text-dim);
+}
+
+.stat-bar {
+    height: var(--space-md);
+    border-radius: 999px;
+    background: var(--color-border-soft);
+    overflow: hidden;
+    box-shadow: var(--shadow-bar);
+}
+
+.stat-bar-fill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    transition: width 0.6s ease;
+}
+
+.stat-bar-hp {
+    background: linear-gradient(90deg, var(--color-stat-hp-start), var(--color-stat-hp-end));
+}
+
+.stat-bar-attack {
+    background: linear-gradient(90deg, var(--color-stat-attack-start), var(--color-stat-attack-end));
+}
+
+.stat-bar-defense {
+    background: linear-gradient(90deg, var(--color-stat-defense-start), var(--color-stat-defense-end));
+}
+
+.stat-bar-special-attack {
+    background: linear-gradient(90deg, var(--color-stat-spa-start), var(--color-stat-spa-end));
+}
+
+.stat-bar-special-defense {
+    background: linear-gradient(90deg, var(--color-stat-spd-start), var(--color-stat-spd-end));
+}
+
+.stat-bar-speed {
+    background: linear-gradient(90deg, var(--color-stat-speed-start), var(--color-stat-speed-end));
+}
+
+@keyframes image-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes card-rise {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

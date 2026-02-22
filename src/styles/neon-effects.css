@@ -1,0 +1,81 @@
+body.filter-fire {
+    background: radial-gradient(circle at 60% 40%, #ffc800 0%, #ff6f1b 40%, #181a23 100%);
+}
+
+body.filter-electric {
+    background: radial-gradient(circle at 50% 50%, #ffe600 0%, #fff700 30%, #181a23 100%);
+}
+
+body.filter-psychic {
+    background: radial-gradient(circle at 50% 50%, #c84cff 0%, #a800ff 40%, #181a23 100%);
+}
+
+body.filter-water {
+    background: radial-gradient(circle at 50% 50%, #00bfff 0%, #181a23 100%);
+}
+
+body.filter-ghost {
+    background: radial-gradient(circle at 50% 50%, #8a2be2 0%, #181a23 100%);
+}
+
+body.filter-grass {
+    background: radial-gradient(circle at 50% 50%, #00ff7f 0%, #39ff14 40%, #181a23 100%);
+}
+
+body.filter-bug {
+    background: radial-gradient(circle at 50% 50%, #a8b820 0%, #181a23 100%);
+}
+
+body.filter-dragon {
+    background: radial-gradient(circle at 50% 50%, #7038f8 0%, #181a23 100%);
+}
+
+body.filter-fairy {
+    background: radial-gradient(circle at 50% 50%, #ee99ac 0%, #181a23 100%);
+}
+
+
+body.filter-fighting {
+    background: radial-gradient(circle at 50% 50%, #c03028 0%, #181a23 100%);
+}
+
+body.filter-flying {
+    background: radial-gradient(circle at 50% 50%, #a890f0 0%, #181a23 100%);
+}
+
+
+body.filter-ground {
+    background: radial-gradient(circle at 50% 50%, #e0c068 0%, #181a23 100%);
+}
+
+
+body.filter-ice {
+    background: radial-gradient(circle at 50% 50%, #98d8d8 0%, #181a23 100%);
+}
+
+body.filter-normal {
+    background: radial-gradient(circle at 50% 50%, #a8a878 0%, #181a23 100%);
+}
+
+body.filter-poison {
+    background: radial-gradient(circle at 50% 50%, #a040a0 0%, #181a23 100%);
+}
+
+body.filter-rock {
+    background: radial-gradient(circle at 50% 50%, #b8a038 0%, #181a23 100%);
+}
+
+body.filter-steel {
+    background: radial-gradient(circle at 50% 50%, #b8b8d0 0%, #181a23 100%);
+}
+
+.poke-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    padding: 2rem;
+}
+
+body[class^="filter-"] {
+    transition: background 0.8s cubic-bezier(.77, 0, .18, 1), filter 0.8s cubic-bezier(.77, 0, .18, 1);
+}

@@ -1,0 +1,202 @@
+:root {
+    /* Fonts */
+    --font-family-base: "Josefin Sans", sans-serif;
+    --font-family-display: "Squada One", sans-serif;
+    --font-weight-base: 400;
+    --line-height-base: 1.5;
+    --line-height-tight: 1.1;
+
+    /* Font sizes */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 20px;
+    --font-size-xl: 28px;
+    --font-size-2xl: 42px;
+    --font-size-hero: 3.2em;
+
+    /* Letter spacing */
+    --letter-spacing-sm: 1px;
+    --letter-spacing-md: 2px;
+
+    /* Spacing */
+    --space-0: 0;
+    --space-2xs: 2px;
+    --space-xs: 6px;
+    --space-sm: 10px;
+    --space-sm-2: 12px;
+    --space-md: 14px;
+    --space-base: 16px;
+    --space-lg: 18px;
+    --space-xl: 20px;
+    --space-2xl: 22px;
+    --space-3xl: 26px;
+    --space-4xl: 32px;
+    --space-5xl: 38px;
+    --space-6xl: 46px;
+
+    /* Sizes */
+    --size-card-width: 380px;
+    --size-card-min-width: 280px;
+    --size-card-min-height: 556px;
+    --size-card-aspect: 280 / 556;
+    --size-list-gap: 2rem;
+    --size-image-area: 260px;
+    --size-image-frame: 240px;
+    --size-image: 190px;
+    --size-stat-label: 48px;
+    --size-stat-value: 76px;
+    --size-tab-spacer: 38px;
+
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-pill: 999px;
+
+    /* Base colors */
+    --color-black: #050505;
+    --color-black-strong: #030303;
+    --color-black-soft: #0b0b0b;
+    --color-black-mid: #090c09;
+    --color-black-tab: #0a0f0a;
+    --color-bg-app: #242424;
+    --color-bg-light: #ffffff;
+    --color-text-bright: #f4fff4;
+    --color-text-dim: #8fe88f;
+    --color-text-dark: #111111;
+    --color-text-light: #213547;
+    --color-text-opaque: rgba(255, 255, 255, 0.87);
+    --color-text-shadow: rgba(0, 0, 0, 0.5);
+    --color-border-soft: rgba(255, 255, 255, 0.08);
+    --color-tab-text: #081108;
+    --color-link: #646cff;
+    --color-link-hover: #535bf2;
+    --color-link-hover-light: #747bff;
+    --color-button-bg: #1a1a1a;
+    --color-button-bg-light: #f9f9f9;
+
+    /* UI surfaces */
+    --ui-border-strong: rgb(255 255 255 / 0.2);
+    --ui-surface-strong: rgba(5, 5, 5, 0.8);
+    --ui-surface-soft: rgba(5, 5, 5, 0.75);
+    --ui-focus-ring: 0 0 0 2px rgb(100 108 255 / 0.3);
+    --ui-empty-shadow: 0 0 18px rgb(var(--type-default-rgb) / 0.25);
+    --ui-type-border: 2px solid rgb(var(--type-default-rgb) / 0.5);
+    --ui-type-border-strong: 2px solid rgb(var(--type-default-rgb) / 0.7);
+    --ui-type-border-soft: 1px solid rgb(var(--type-default-rgb) / 0.4);
+    --ui-type-glow: 0 0 18px rgb(var(--type-default-rgb) / 0.35);
+    --ui-type-glow-soft: 0 0 18px rgb(var(--type-default-rgb) / 0.25);
+    --ui-type-bg-soft: rgb(var(--type-default-rgb) / 0.1);
+
+    /* Default type tint */
+    --type-default-rgb: 34 255 42;
+
+    /* Stat colors */
+    --color-stat-hp-start: #ff5d5d;
+    --color-stat-hp-end: #ff1f3a;
+    --color-stat-attack-start: #ffb35c;
+    --color-stat-attack-end: #ff7a1b;
+    --color-stat-defense-start: #ffd66b;
+    --color-stat-defense-end: #c8941d;
+    --color-stat-spa-start: #ff7ac8;
+    --color-stat-spa-end: #d23b93;
+    --color-stat-spd-start: #8a9cff;
+    --color-stat-spd-end: #4d5df0;
+    --color-stat-speed-start: #7dffb0;
+    --color-stat-speed-end: #25c878;
+
+    /* Shadows */
+    --shadow-image: 0 8px 16px rgba(0, 0, 0, 0.7);
+    --shadow-bar: inset 0 0 6px rgba(0, 0, 0, 0.6);
+
+    /* Type gradients */
+    --type-grass-start: #7aff71;
+    --type-grass-end: #2a9d2a;
+    --type-grass-border: #aaffaa;
+    --type-grass-text: #0b130b;
+
+    --type-poison-start: #ca6bff;
+    --type-poison-end: #7c2b9a;
+    --type-poison-border: #e3b1ff;
+    --type-poison-text: #f4fff4;
+
+    --type-normal-start: #d5d5c2;
+    --type-normal-end: #8a8a6a;
+    --type-normal-border: #e7e7d6;
+    --type-normal-text: #111111;
+
+    --type-fire-start: #ffb56b;
+    --type-fire-end: #f05a2b;
+    --type-fire-border: #ffd6a4;
+    --type-fire-text: #2b0d00;
+
+    --type-water-start: #8fb7ff;
+    --type-water-end: #2f63ff;
+    --type-water-border: #b9d5ff;
+    --type-water-text: #08162f;
+
+    --type-electric-start: #fff08a;
+    --type-electric-end: #f3b000;
+    --type-electric-border: #fff6b8;
+    --type-electric-text: #2a2000;
+
+    --type-ice-start: #baf7ff;
+    --type-ice-end: #6bd3e6;
+    --type-ice-border: #ddfbff;
+    --type-ice-text: #0a2a30;
+
+    --type-fighting-start: #ff8a7a;
+    --type-fighting-end: #b82828;
+    --type-fighting-border: #ffc1b8;
+    --type-fighting-text: #f4fff4;
+
+    --type-ground-start: #f2d29b;
+    --type-ground-end: #c69a45;
+    --type-ground-border: #ffe3b8;
+    --type-ground-text: #2a1a06;
+
+    --type-flying-start: #c6b2ff;
+    --type-flying-end: #7a60ff;
+    --type-flying-border: #e1d6ff;
+    --type-flying-text: #f4fff4;
+
+    --type-psychic-start: #ff9bc3;
+    --type-psychic-end: #f54a87;
+    --type-psychic-border: #ffc1da;
+    --type-psychic-text: #f4fff4;
+
+    --type-bug-start: #d9e37a;
+    --type-bug-end: #7f8f1f;
+    --type-bug-border: #eaf3b0;
+    --type-bug-text: #1b1f08;
+
+    --type-rock-start: #e0c087;
+    --type-rock-end: #9c7a2a;
+    --type-rock-border: #f0d7ab;
+    --type-rock-text: #241706;
+
+    --type-ghost-start: #b39be3;
+    --type-ghost-end: #5a3d8f;
+    --type-ghost-border: #d6c7f3;
+    --type-ghost-text: #f4fff4;
+
+    --type-dragon-start: #8a7bff;
+    --type-dragon-end: #3d2bce;
+    --type-dragon-border: #b7adff;
+    --type-dragon-text: #f4fff4;
+
+    --type-dark-start: #8f7c67;
+    --type-dark-end: #3f3227;
+    --type-dark-border: #b6a497;
+    --type-dark-text: #f4fff4;
+
+    --type-steel-start: #d4d8e6;
+    --type-steel-end: #8a94b3;
+    --type-steel-border: #eceff7;
+    --type-steel-text: #1b1f2c;
+
+    --type-fairy-start: #ffc1e1;
+    --type-fairy-end: #f08ab8;
+    --type-fairy-border: #ffd6ea;
+    --type-fairy-text: #2b0f1e;
+}

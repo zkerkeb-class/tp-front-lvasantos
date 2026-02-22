@@ -1,7 +1,7 @@
 
 const PokeTitle = ({ name }) => {
     return (
-        <span className="poke-title">{name}</span>
+        <span className="poke-title squada-one-regular">{name}</span>
     );
 }
 
